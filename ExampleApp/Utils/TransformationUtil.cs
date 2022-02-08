@@ -7,6 +7,7 @@ using Android.Net;
 using Android.Text;
 using Java.IO;
 using Xam.Plugin.LinkedIn.LiTr.Filter;
+using Xam.Plugin.LinkedIn.LiTr.Filter.Video.GL;
 
 namespace LiTrExample.Utils
 {
