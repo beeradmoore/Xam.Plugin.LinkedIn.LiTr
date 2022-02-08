@@ -1,0 +1,19 @@
+﻿<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+
+    <attr path="/api/package[@name='com.linkedin.android.litr.filter']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Filter</attr>
+    <attr path="/api/package[@name='com.linkedin.android.litr.filter.video.gl']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Filter.Video.GL</attr>
+
+    <!--
+    <add-node path="/api/package[@name='com.linkedin.android.litr.filter.video.gl']/class[@name='BaseOverlayGlFilter']">
+
+    </add-node>
+    -->
+</metadata>

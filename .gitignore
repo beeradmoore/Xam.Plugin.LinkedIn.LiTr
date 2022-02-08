@@ -4,3 +4,11 @@ Binding/bin
 Binding/Jars
 Binding/JavaDocs
 Binding/obj
+*.nupkg
+*.snupkg
+.vs/
+bin/
+obj/
+*.jar
+*.aar
+JavaDocs/

@@ -16,12 +16,19 @@
     <attr path="/api/package[@name='com.linkedin.android.litr.filter.video.gl']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Filter.Video.GL</attr>
     <attr path="/api/package[@name='com.linkedin.android.litr.filter.video.gl.parameter']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Filter.Video.GL.Parameter</attr>
     <attr path="/api/package[@name='com.linkedin.android.litr.filter.video.gl.shader']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Filter.Video.GL.Shader</attr>
+    <attr path="/api/package[@name='com.linkedin.android.litr.frameextract']" name="managedName">Xam.Plugin.LinkedIn.LiTr.FrameExtract</attr>
+    <attr path="/api/package[@name='com.linkedin.android.litr.frameextract.behaviors']" name="managedName">Xam.Plugin.LinkedIn.LiTr.FrameExtract.Behaviors</attr>
+    <attr path="/api/package[@name='com.linkedin.android.litr.frameextract.queue']" name="managedName">Xam.Plugin.LinkedIn.LiTr.FrameExtract.Queue</attr>
     <attr path="/api/package[@name='com.linkedin.android.litr.io']" name="managedName">Xam.Plugin.LinkedIn.LiTr.IO</attr>
     <attr path="/api/package[@name='com.linkedin.android.litr.preview']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Preview</attr>
     <attr path="/api/package[@name='com.linkedin.android.litr.render']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Render</attr>
-    <attr path="/api/package[@name='com.linkedin.android.litr.resample']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Resample</attr>
     <attr path="/api/package[@name='com.linkedin.android.litr.test']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Test</attr>
     <attr path="/api/package[@name='com.linkedin.android.litr.transcoder']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Transcoder</attr>
     <attr path="/api/package[@name='com.linkedin.android.litr.utils']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Utils</attr>
+
+    <!-- unsure why this needs to be added but things like getSampleTrackIndex is fine. -->
+    <add-node path="/api/package[@name='com.linkedin.android.litr.io']/class[@name='MockVideoMediaSource']">
+        <method name="getOrientationHint" return="int" abstract="false" native="false" synchronized="false" static="false" final="false" deprecated="not deprecated" visibility="public" />
+    </add-node>
 
 </metadata>

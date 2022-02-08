@@ -1,0 +1,27 @@
+﻿<resources>
+    <string name="app_name">LiTrExample</string>
+
+  
+    <string name="no_transformation_stats">No transformation stats available</string>
+
+    <string name="stats_track" formatted="true">Track: %d\n</string>
+    <string name="stats_mime_type" formatted="true">MIME type: %s\n</string>
+    <string name="stats_width" formatted="true">Width: %d\n</string>
+    <string name="stats_height" formatted="true">Height: %d\n</string>
+    <string name="stats_bitrate" formatted="true">Bitrate: %d\n</string>
+    <string name="stats_duration" formatted="true">Duration: %d\n</string>
+    <string name="stats_frame_rate" formatted="true">Frame Rate: %d\n</string>
+    <string name="stats_key_frame_interval" formatted="true">Key Frame Interval: %d\n</string>
+    <string name="stats_rotation" formatted="true">Rotation: %d\n</string>
+    <string name="stats_channel_count" formatted="true">Channel Count: %d\n</string>
+    <string name="stats_sampling_rate" formatted="true">Sampling Rate: %d\n</string>
+
+    <string name="stats_source_format">Source Format\n</string>
+    <string name="stats_target_format">Target Format\n</string>
+
+    <string name="stats_decoder" formatted="true">Decoder: %s\n</string>
+    <string name="stats_encoder" formatted="true">Encoder: %s\n</string>
+    <string name="stats_transformation_duration" formatted="true">Transformation duration: %d ms\n</string>
+
+
+</resources>

@@ -46,7 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -54,14 +53,55 @@
     <TransformFile Include="Transforms\EnumFields.xml" />
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
+  
   <ItemGroup>
     <LibraryProjectZip Include="Jars\litr.aar" />
+    <!--<LibraryProjectZip Include="Jars\litr-filters.aar" />-->
   </ItemGroup>
+  
+  <!--
   <ItemGroup>
     <JavaDocJar Include="Jars\litr-javadoc.jar" />
   </ItemGroup>
+  -->
+  <!--
+  <ItemGroup>
+    <JavaSourceJar Include="Jars\litr-plus-filters-sources.jar" />
+  </ItemGroup>
+  -->
+
+  <!--
   <ItemGroup>
     <JavaSourceJar Include="Jars\litr-sources.jar" />
+    <JavaDocJar Include="Jars\litr-javadoc.jar" />
+  </ItemGroup>
+  -->
+<!--
+<ItemGroup>
+  <JavaSourceJar Include="Jars\litr-filters-sources.jar" />
+</ItemGroup>
+-->
+
+
+  <!--
+  <ItemGroup>
+    <None Include="Targets.targets" Pack="True" PackagePath="build\$(TargetFramework)\$(PackageId).targets" />
+    <None Include="Targets.targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)\$(PackageId).targets" />
+
+    <None Include="Jars\litr.aar" Pack="True" PackagePath="aar" />
+    <None Include="Jars\litr-filters.aar" Pack="True" PackagePath="aar" />
+    <InputJar Include="Jars\litr-sources.jar" />
+    <InputJar Include="Jars\litr-filters-sources.jar" />
+    <AndroidAarLibrary Include="$(MSBuildThisFileDirectory)..\..\aar\*.aar" />
+  </ItemGroup>
+-->
+
+  <ItemGroup>
+    <PackageReference Include="NuGet.Build.Packaging">
+      <Version>0.2.5-dev.8</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
