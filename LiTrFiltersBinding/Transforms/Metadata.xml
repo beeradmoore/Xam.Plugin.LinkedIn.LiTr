@@ -11,6 +11,8 @@
     <attr path="/api/package[@name='com.linkedin.android.litr.filter']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Filter</attr>
     <attr path="/api/package[@name='com.linkedin.android.litr.filter.video.gl']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Filter.Video.GL</attr>
 
+    <attr path="/api/package[@name='com.linkedin.android.litr.filter.video.gl']/class[@name='BaseOverlayGlFilter']" name="visibility">public</attr>
+
     <!--
     <add-node path="/api/package[@name='com.linkedin.android.litr.filter.video.gl']/class[@name='BaseOverlayGlFilter']">
 
