@@ -77,7 +77,7 @@
     <Compile Include="Data\SharedMediaStoragePublisher.cs" />
     <Compile Include="Utils\TransformationUtil.cs" />
     <Compile Include="Utils\TrackMetadataUtil.cs" />
-    <Compile Include="Utils\MediaFormatUtils.cs" />
+    <Compile Include="Data\GenericTrackFormat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -113,6 +113,10 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
+    <AndroidResource Include="Resources\drawable\test_image_1.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -127,15 +131,22 @@
     <PackageReference Include="Xamarin.AndroidX.DataBinding.DataBindingRuntime">
       <Version>7.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Xam.Plugin.LinkedIn.LiTr">
-      <Version>1.4.18</Version>
+    <PackageReference Include="Xam.Plugins.Android.ExoPlayer">
+      <Version>2.11.8</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Kotlin.StdLib">
+      <Version>1.5.31.2</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.LinkedIn.LiTr-Filters">
+      <Version>1.4.18</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.LinkedIn.LiTr">
       <Version>1.4.18</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\door_30fps_30sec.mp4" />
+    <AndroidAsset Include="Assets\test_image_1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

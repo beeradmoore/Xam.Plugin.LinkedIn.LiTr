@@ -13,7 +13,7 @@ namespace LiTrExample.Data
         public int rotation;
 
 
-        public VideoTrackFormat(int index, String mimeType) : base(index, mimeType)
+        public VideoTrackFormat(int index, string mimeType) : base(index, mimeType)
         {
 
         }

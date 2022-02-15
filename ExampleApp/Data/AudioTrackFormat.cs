@@ -11,7 +11,7 @@ namespace LiTrExample.Data
         public int bitrate;
         public long duration;
 
-        public AudioTrackFormat(int index, String mimeType) : base(index, mimeType)
+        public AudioTrackFormat(int index, string mimeType) : base(index, mimeType)
         {
             
         }

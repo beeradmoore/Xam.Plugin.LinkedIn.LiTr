@@ -6,6 +6,7 @@ using Android.OS;
 using Xam.Plugin.LinkedIn.LiTr.Analytics;
 using System;
 using System.Text;
+using Xam.Plugin.LinkedIn.LiTr.Utils;
 
 namespace LiTrExample.Utils
 {
@@ -14,7 +15,7 @@ namespace LiTrExample.Utils
         /*
         private const String TAG = TrackMetadataUtil.class.getSimpleName();
            */
-        private static string KEY_ROTATION => Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.M ? MediaFormat.KeyRotation : "rotation-degrees";
+        public static string KEY_ROTATION => Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.M ? MediaFormat.KeyRotation : "rotation-degrees";
      
 
 
@@ -104,11 +105,11 @@ namespace LiTrExample.Utils
             }
             if (mediaFormat.ContainsKey(MediaFormat.KeyFrameRate))
             {
-                stringBuilder.AppendLine(context.GetString(Resource.String.stats_frame_rate, MediaFormatUtils.getFrameRate(mediaFormat, new Java.Lang.Integer(0)).IntValue()));
+                stringBuilder.AppendLine(context.GetString(Resource.String.stats_frame_rate, MediaFormatUtils.GetFrameRate(mediaFormat, new Java.Lang.Integer(0)).IntValue()));
             }
             if (mediaFormat.ContainsKey(MediaFormat.KeyIFrameInterval))
             {
-                stringBuilder.AppendLine(context.GetString(Resource.String.stats_key_frame_interval, MediaFormatUtils.getIFrameInterval(mediaFormat, new Java.Lang.Integer(0)).IntValue()));
+                stringBuilder.AppendLine(context.GetString(Resource.String.stats_key_frame_interval, MediaFormatUtils.GetIFrameInterval(mediaFormat, new Java.Lang.Integer(0)).IntValue()));
             }
             if (mediaFormat.ContainsKey(KEY_ROTATION))
             {

@@ -18,7 +18,7 @@ namespace LiTrExample.Data
             STATE_ERROR = 5,
         };
 
-        public String requestId;
+        public string requestId;
 
         public State state;
         public int progress;

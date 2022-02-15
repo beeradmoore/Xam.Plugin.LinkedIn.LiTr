@@ -7,9 +7,9 @@ namespace LiTrExample.Data
     public class MediaTrackFormat
     {
         public int index;
-        public String mimeType;
+        public string mimeType;
 
-        public MediaTrackFormat(int index, String mimeType)
+        public MediaTrackFormat(int index, string mimeType)
         {
             this.index = index;
             this.mimeType = mimeType;

@@ -4,6 +4,8 @@
 using Android.Content;
 using Android.Graphics;
 using Android.Net;
+using Android.OS;
+using Android.Provider;
 using Android.Text;
 using Java.IO;
 using Xam.Plugin.LinkedIn.LiTr.Filter;
@@ -77,6 +79,38 @@ namespace LiTrExample.Utils
             }
 
             return filter;
+        }
+
+        public static File GetTargetFileDirectory(Context context)
+        {
+            return context.GetExternalFilesDir(Environment.DirectoryMovies);
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+            {
+                return context.NoBackupFilesDir;
+            }
+            else
+            {
+                return context.FilesDir;
+            }
+        }
+
+        public static string GetDisplayName(Context context,  Uri uri)
+        {
+            var name = SystemClock.ElapsedRealtime().ToString();
+
+            var projection = new string[] { MediaStore.IMediaColumns.DisplayName };
+            var cursor = context.ContentResolver.Query(uri, projection, null, null, null);
+            if (cursor != null)
+            {
+                if (cursor.MoveToFirst())
+                {
+                    name = cursor.GetString(0);
+                }
+                cursor.Close();
+            }
+
+            return name;
         }
     }
 }
