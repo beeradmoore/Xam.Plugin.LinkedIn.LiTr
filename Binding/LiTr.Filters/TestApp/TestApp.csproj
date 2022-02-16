@@ -104,9 +104,9 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xam.Plugin.LinkedIn.LiTr-Filters.csproj">
+    <ProjectReference Include="..\Xam.Plugin.LinkedIn.LiTr.Filters.csproj">
       <Project>{CC3EA119-C670-4B86-87F4-1D373D830DAF}</Project>
-      <Name>Xam.Plugin.LinkedIn.LiTr-Filters</Name>
+      <Name>Xam.Plugin.LinkedIn.LiTr.Filters</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

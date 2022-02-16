@@ -1,6 +1,23 @@
 #!/bin/bash
 
-#./FetchJars.sh
+rm -f *.nupkg
+rm -f *.snupkg
 
-msbuild Xam.Plugin.LinkedIn.LiTr.csproj -property:Configuration=Release -target:Restore,Clean,Build
-nuget pack Xam.Plugin.LinkedIn.LiTr.nuspec -Symbols -SymbolPackageFormat snupkg
+# Go bind LiTr, or exit if it failed.
+pushd LiTr
+    ./BuildNugetPackage.sh
+    if [ $? -ne 0 ]
+    then
+        exit 1
+    fi
+popd
+
+
+# Go bind LiTr.Filters, or exit if it failed.
+pushd LiTr.Filters
+    ./BuildNugetPackage.sh
+    if [ $? -ne 0 ]
+    then
+        exit 1
+    fi
+popd

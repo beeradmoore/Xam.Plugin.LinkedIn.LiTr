@@ -134,10 +134,7 @@
     <PackageReference Include="Xam.Plugins.Android.ExoPlayer">
       <Version>2.11.8</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Kotlin.StdLib">
-      <Version>1.5.31.2</Version>
-    </PackageReference>
-    <PackageReference Include="Xam.Plugin.LinkedIn.LiTr-Filters">
+    <PackageReference Include="Xam.Plugin.LinkedIn.LiTr.Filters">
       <Version>1.4.18</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.LinkedIn.LiTr">

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Xam.Plugin.LinkedIn.LiTr.Filters</id>
+        <version>1.4.18</version>
+        <description>Xamarin.Android bindings for LinkedIn.LiTr.Filters.</description>
+        <tags>xamarin, xamarin.android, linkedin.litr.filters, linkedin.litr, litr, litr.filters</tags>
+        <authors>beeradmoore</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <license type="file">LICENSE</license>
+        <projectUrl>https://github.com/beeradmoore/Xam.Plugin.LinkedIn.LiTr</projectUrl>
+        <dependencies>
+            <group targetFramework="MonoAndroid10">
+                <dependency id="Xam.Plugin.LinkedIn.LiTr" version="[1.4.18]" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="../../LICENSE" />
+        <file src="bin/Release/Xam.Plugin.LinkedIn.LiTr.Filters.dll" target="lib\MonoAndroid10\Xam.Plugin.LinkedIn.LiTr.Filters.dll" />
+        <file src="bin/Release/Xam.Plugin.LinkedIn.LiTr.Filters.pdb" target="lib\MonoAndroid10\Xam.Plugin.LinkedIn.LiTr.Filters.pdb" />
+    </files>
+</package>

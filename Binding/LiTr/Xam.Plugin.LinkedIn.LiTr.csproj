@@ -52,58 +52,13 @@
     <TransformFile Include="Transforms\Metadata.xml" />
     <TransformFile Include="Transforms\EnumFields.xml" />
     <TransformFile Include="Transforms\EnumMethods.xml" />
-  </ItemGroup>
-  
+  </ItemGroup>  
   <ItemGroup>
     <LibraryProjectZip Include="Jars\litr.aar" />
-    <!--<LibraryProjectZip Include="Jars\litr-filters.aar" />-->
   </ItemGroup>
-  
-  <!--
   <ItemGroup>
-    <JavaDocJar Include="Jars\litr-javadoc.jar" />
-  </ItemGroup>
-  -->
-  <!--
-  <ItemGroup>
-    <JavaSourceJar Include="Jars\litr-plus-filters-sources.jar" />
-  </ItemGroup>
-  -->
-
-  <!--
-  <ItemGroup>
-    <JavaSourceJar Include="Jars\litr-sources.jar" />
-    <JavaDocJar Include="Jars\litr-javadoc.jar" />
-  </ItemGroup>
-  -->
-<!--
-<ItemGroup>
-  <JavaSourceJar Include="Jars\litr-filters-sources.jar" />
-</ItemGroup>
--->
-
-
-  <!--
-  <ItemGroup>
-    <None Include="Targets.targets" Pack="True" PackagePath="build\$(TargetFramework)\$(PackageId).targets" />
-    <None Include="Targets.targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)\$(PackageId).targets" />
-
-    <None Include="Jars\litr.aar" Pack="True" PackagePath="aar" />
-    <None Include="Jars\litr-filters.aar" Pack="True" PackagePath="aar" />
-    <InputJar Include="Jars\litr-sources.jar" />
-    <InputJar Include="Jars\litr-filters-sources.jar" />
-    <AndroidAarLibrary Include="$(MSBuildThisFileDirectory)..\..\aar\*.aar" />
-  </ItemGroup>
--->
-
-  <ItemGroup>
-    <PackageReference Include="NuGet.Build.Packaging">
-      <Version>0.2.5-dev.8</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Xamarin.Kotlin.StdLib">
-      <Version>1.5.31.2</Version>
+      <Version>1.4.32</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />

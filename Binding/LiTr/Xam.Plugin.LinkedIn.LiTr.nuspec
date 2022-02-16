@@ -10,11 +10,13 @@
         <license type="file">LICENSE</license>
         <projectUrl>https://github.com/beeradmoore/Xam.Plugin.LinkedIn.LiTr</projectUrl>
         <dependencies>
-            <group targetFramework="MonoAndroid10" />
+            <group targetFramework="MonoAndroid10">
+                <dependency id="Xamarin.Kotlin.StdLib" version="1.4.32" />
+            </group>
         </dependencies>
     </metadata>
     <files>
-        <file src="..\LICENSE" />
+        <file src="../../LICENSE" />
         <file src="bin/Release/Xam.Plugin.LinkedIn.LiTr.dll" target="lib\MonoAndroid10\Xam.Plugin.LinkedIn.LiTr.dll" />
         <file src="bin/Release/Xam.Plugin.LinkedIn.LiTr.pdb" target="lib\MonoAndroid10\Xam.Plugin.LinkedIn.LiTr.pdb" />
     </files>
