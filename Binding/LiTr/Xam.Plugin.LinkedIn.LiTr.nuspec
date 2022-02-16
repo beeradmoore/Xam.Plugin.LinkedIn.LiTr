@@ -2,6 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Xam.Plugin.LinkedIn.LiTr</id>
+        <title>Xam.Plugin.LinkedIn.LiTr</title>
         <version>1.4.18</version>
         <description>Xamarin.Android bindings for LinkedIn.LiTr.</description>
         <tags>xamarin, xamarin.android, linkedin.litr, litr</tags>
@@ -16,8 +17,8 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="../../LICENSE" />
-        <file src="bin/Release/Xam.Plugin.LinkedIn.LiTr.dll" target="lib\MonoAndroid10\Xam.Plugin.LinkedIn.LiTr.dll" />
-        <file src="bin/Release/Xam.Plugin.LinkedIn.LiTr.pdb" target="lib\MonoAndroid10\Xam.Plugin.LinkedIn.LiTr.pdb" />
+        <file src="..\..\LICENSE" />
+        <file src="bin\Release\Xam.Plugin.LinkedIn.LiTr.dll" target="lib\MonoAndroid10\Xam.Plugin.LinkedIn.LiTr.dll" />
+        <file src="bin\Release\Xam.Plugin.LinkedIn.LiTr.pdb" target="lib\MonoAndroid10\Xam.Plugin.LinkedIn.LiTr.pdb" />
     </files>
 </package>
