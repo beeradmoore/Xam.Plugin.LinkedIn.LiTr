@@ -3,7 +3,7 @@
     <metadata>
         <id>Xam.Plugin.LinkedIn.LiTr.Filters</id>
         <title>Xam.Plugin.LinkedIn.LiTr.Filters</title>
-        <version>1.5.0</version>
+        <version>1.5.1</version>
         <description>Xamarin.Android bindings for LinkedIn.LiTr.Filters.</description>
         <tags>xamarin, xamarin.android, linkedin.litr.filters, linkedin.litr, litr, litr.filters</tags>
         <authors>beeradmoore</authors>
@@ -12,7 +12,7 @@
         <projectUrl>https://github.com/beeradmoore/Xam.Plugin.LinkedIn.LiTr</projectUrl>
         <dependencies>
             <group targetFramework="MonoAndroid10">
-                <dependency id="Xam.Plugin.LinkedIn.LiTr" version="[1.5.0]" />
+                <dependency id="Xam.Plugin.LinkedIn.LiTr" version="[1.5.1]" />
             </group>
         </dependencies>
     </metadata>
