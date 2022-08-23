@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.4.19
+VERSION=1.5.0
 
 # Remove bin and obj directories.
 rm -rf bin/
