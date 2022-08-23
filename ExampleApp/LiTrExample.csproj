@@ -135,10 +135,10 @@
       <Version>2.11.8</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.LinkedIn.LiTr.Filters">
-      <Version>1.4.18</Version>
+      <Version>1.4.19</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.LinkedIn.LiTr">
-      <Version>1.4.18</Version>
+      <Version>1.4.19</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
