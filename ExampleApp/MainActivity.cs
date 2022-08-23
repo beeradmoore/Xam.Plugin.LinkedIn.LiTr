@@ -29,6 +29,10 @@ using Xam.Plugin.LinkedIn.LiTr.Analytics;
 using Com.Google.Android.Exoplayer2;
 using Xam.Plugin.LinkedIn.LiTr.Codec;
 using Xam.Plugin.LinkedIn.LiTr.Render;
+using static Android.Provider.CalendarContract;
+using Xam.Plugin.LinkedIn.LiTr.Filter.Video.GL;
+using Xam.Plugin.LinkedIn.LiTr.Exception;
+
 
 namespace LiTrExample
 {
@@ -43,6 +47,9 @@ namespace LiTrExample
         MediaTransformer _mediaTransformer;
         PlayerView _playerView;
         SimpleExoPlayer _player;
+
+
+        private static readonly string KeyRotation = Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.M ? MediaFormat.KeyRotation : "rotation-degrees";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -126,10 +133,13 @@ namespace LiTrExample
             _targetMedia.setTracks(_sourceMedia.tracks);
             _targetMedia.writeToWav = true;
 
+
+            //TranscodeAudio(_sourceMedia, _targetMedia, _trimConfig, _transformationState);
+
+
             //ApplyWatermark(_sourceMedia, _targetMedia, _trimConfig, _transformationState);
 
-            TranscodeAudio(_sourceMedia, _targetMedia, _trimConfig, _transformationState);
-
+            SquareCenterCrop(_sourceMedia, _targetMedia, _transformationState);
         }
 
         protected void updateSourceMedia(SourceMedia sourceMedia, Android.Net.Uri uri)
@@ -253,21 +263,21 @@ namespace LiTrExample
             foreach (TargetTrack targetTrack in targetMedia.tracks)
             {
 
-                if (targetTrack is TargetVideoTrack targetVideoTrack) 
+                if (targetTrack is TargetVideoTrack targetVideoTrack)
                 {
                     targetVideoTrack.overlay = watermarkUri;
 
                     watermarkImageFilter = createGlFilters(
                         sourceMedia,
                         (TargetVideoTrack)targetTrack,
-                        0.2f,
-                        new PointF(0.8f, 0.8f),
+                        0.5f,
+                        new PointF(0.5f, 0.5f),
                         0);
                     break;
                 }
             }
 
-            
+
             MediaRange mediaRange = trimConfig.enabled
                     ? new MediaRange(
                     TimeUnit.Milliseconds.ToMicros((long)(trimConfig.range[0] * 1000)),
@@ -287,10 +297,159 @@ namespace LiTrExample
                     null,
                     this,
                     transformationOptions);
-      
+
 
         }
 
+
+
+        void SquareCenterCrop(SourceMedia sourceMedia,
+                                     TargetMedia targetMedia,
+                                     TransformationState transformationState)
+        {
+            if (targetMedia.getIncludedTrackCount() < 1)
+            {
+                return;
+            }
+
+            if (targetMedia.targetFile.Exists())
+            {
+                targetMedia.targetFile.Delete();
+            }
+
+            transformationState.requestId = UUID.RandomUUID().ToString();
+           
+            try
+            {
+                int videoRotation = 0;
+                foreach (MediaTrackFormat trackFormat in sourceMedia.tracks)
+                {
+                    if (trackFormat.mimeType.StartsWith("video"))
+                    {
+                        videoRotation = ((VideoTrackFormat)trackFormat).rotation;
+                        break;
+                    }
+                }
+
+                var mediaTarget = new MediaMuxerMediaTarget(targetMedia.targetFile.Path,
+                        targetMedia.getIncludedTrackCount(),
+                        videoRotation,
+                        (int)Android.Media.MuxerOutputType.Mpeg4);
+
+                List<TrackTransform> trackTransforms = new List<TrackTransform>(targetMedia.tracks.Count);
+                var mediaSource = new MediaExtractorMediaSource(context, sourceMedia.uri);
+
+                foreach (TargetTrack targetTrack in targetMedia.tracks)
+                {
+                    if (!targetTrack.shouldInclude)
+                    {
+                        continue;
+                    }
+                    MediaFormat mediaFormat;
+                    TrackTransform.Builder trackTransformBuilder = new TrackTransform.Builder(mediaSource,
+                            targetTrack.sourceTrackIndex,
+                            mediaTarget)
+                            .SetTargetTrack(trackTransforms.Count)
+                            .SetEncoder(new MediaCodecEncoder())
+                            .SetDecoder(new MediaCodecDecoder());
+                    if (targetTrack.format is VideoTrackFormat videoTrackFormat)
+                    {
+                        // adding background bitmap first, to ensure that video renders on top of it
+                        List<IGlFilter> filters = new List<IGlFilter>();
+                        if (targetMedia.backgroundImageUri != null)
+                        {
+                            var backgroundImageFilter = TransformationUtil.createGlFilter(context,
+                                    targetMedia.backgroundImageUri,
+                                    new PointF(1, 1),
+                                    new PointF(0.5f, 0.5f),
+                                    0);
+                            filters.Add(backgroundImageFilter);
+                        }
+
+                        int width = videoTrackFormat.width;
+                        int height = videoTrackFormat.height;
+                        Transform transform;
+
+                        if (videoRotation == 0 || videoRotation == 180)
+                        {
+                            // landscape
+                            transform = new Transform(new PointF((float)width / height, 1.0f), new PointF(0.5f, 0.5f), 0);
+                        }
+                        else
+                        {
+                            // portrait
+                            transform = new Transform(new PointF(1.0f, (float)width / height), new PointF(0.5f, 0.5f), 0);
+                        }
+
+                        var frameRenderFilter = new DefaultVideoFrameRenderFilter(transform);
+                        filters.Add(frameRenderFilter);
+
+                        trackTransformBuilder.SetRenderer(new GlVideoRenderer(filters));
+
+                        // hack to make video square, should be done more elegantly in prod code
+                        ((VideoTrackFormat)targetTrack.format).width = TargetMedia.DEFAULT_VIDEO_HEIGHT;
+                    }
+                    mediaFormat = CreateMediaFormat(targetTrack);
+                    trackTransformBuilder.SetTargetFormat(mediaFormat);
+                    trackTransforms.Add(trackTransformBuilder.Build());
+                }
+
+                _mediaTransformer.Transform(transformationState.requestId,
+                    trackTransforms,
+                    this,
+                    MediaTransformer.GranularityDefault);
+            }
+            catch (MediaTransformationException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Exception when trying to perform track operation: {ex.Message}");
+            }
+        }
+
+        private MediaFormat CreateMediaFormat(TargetTrack targetTrack)
+        {
+            MediaFormat mediaFormat = null;
+            if (targetTrack != null && targetTrack.format != null)
+            {
+                mediaFormat = new MediaFormat();
+                if (targetTrack.format.mimeType.StartsWith("video"))
+                {
+                    mediaFormat = CreateVideoMediaFormat((VideoTrackFormat)targetTrack.format);
+                }
+                else if (targetTrack.format.mimeType.StartsWith("audio"))
+                {
+                    mediaFormat = CreateAudioMediaFormat((AudioTrackFormat)targetTrack.format);
+                }
+            }
+
+            return mediaFormat;
+        }
+
+        private MediaFormat CreateVideoMediaFormat(VideoTrackFormat trackFormat)
+        {
+            MediaFormat mediaFormat = new MediaFormat();
+            mediaFormat.SetString(MediaFormat.KeyMime, "video/avc");
+            mediaFormat.SetInteger(MediaFormat.KeyWidth, trackFormat.width);
+            mediaFormat.SetInteger(MediaFormat.KeyHeight, trackFormat.height);
+            mediaFormat.SetInteger(MediaFormat.KeyBitRate, trackFormat.bitrate);
+            mediaFormat.SetInteger(MediaFormat.KeyIFrameInterval, trackFormat.keyFrameInterval);
+            mediaFormat.SetInteger(MediaFormat.KeyFrameRate, trackFormat.frameRate);
+            mediaFormat.SetLong(MediaFormat.KeyDuration, trackFormat.duration);
+            mediaFormat.SetInteger(KeyRotation, trackFormat.rotation);
+
+            return mediaFormat;
+        }
+
+        private MediaFormat CreateAudioMediaFormat(AudioTrackFormat trackFormat)
+        {
+            MediaFormat mediaFormat = new MediaFormat();
+            mediaFormat.SetString(MediaFormat.KeyMime, trackFormat.mimeType);
+            mediaFormat.SetInteger(MediaFormat.KeyChannelCount, trackFormat.channelCount);
+            mediaFormat.SetInteger(MediaFormat.KeySampleRate, trackFormat.samplingRate);
+            mediaFormat.SetInteger(MediaFormat.KeyBitRate, trackFormat.bitrate);
+            mediaFormat.SetLong(MediaFormat.KeyDuration, trackFormat.duration);
+
+            return mediaFormat;
+        }
 
         private List<IGlFilter> createGlFilters(SourceMedia sourceMedia,
                                            TargetVideoTrack targetTrack,
@@ -321,7 +480,7 @@ namespace LiTrExample
                             overlayHeight = overlayHeightPixels / sourceVideoTrackFormat.height;
                         }
 
-                        PointF size = new PointF(overlayWidth, overlayHeight);
+                        PointF size = new PointF(200, 200); // overlayWidth, overlayHeight);
 
                         IGlFilter filter = TransformationUtil.createGlFilter(context,
                                                                             targetTrack.overlay,
@@ -389,7 +548,7 @@ namespace LiTrExample
                 List<TrackTransform> trackTransforms = new List<TrackTransform>(1);
 
                 foreach (TargetTrack targetTrack in targetMedia.tracks)
-                { 
+                {
                     if (targetTrack.format is AudioTrackFormat trackFormat)
                     {
                         MediaFormat mediaFormat = MediaFormat.CreateAudioFormat(
