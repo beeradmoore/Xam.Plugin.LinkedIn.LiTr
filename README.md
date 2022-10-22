@@ -1,7 +1,7 @@
 # Xam.Plugin.LinkedIn.LiTr 
 
 
-Xamarin.Android bindings for [LinkedIn.LiTr](https://github.com/linkedin/LiTr) v1.5.2
+Xamarin.Android bindings for [LinkedIn.LiTr](https://github.com/linkedin/LiTr) v1.5.3
 
 ## Installation
 

@@ -26,6 +26,9 @@
     <attr path="/api/package[@name='com.linkedin.android.litr.transcoder']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Transcoder</attr>
     <attr path="/api/package[@name='com.linkedin.android.litr.utils']" name="managedName">Xam.Plugin.LinkedIn.LiTr.Utils</attr>
 
+    <!-- this is an internal interface, so lets just make it public -->
+    <attr path="/api/package[@name='com.linkedin.android.litr.render']/interface[@name='FrameDropper']" name="visibility">public</attr>
+
     <!-- unsure why this needs to be added but things like getSampleTrackIndex is fine. -->
     <add-node path="/api/package[@name='com.linkedin.android.litr.io']/class[@name='MockVideoMediaSource']">
         <method name="getOrientationHint" return="int" abstract="false" native="false" synchronized="false" static="false" final="false" deprecated="not deprecated" visibility="public" />
