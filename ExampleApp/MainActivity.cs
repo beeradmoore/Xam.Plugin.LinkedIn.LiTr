@@ -32,6 +32,7 @@ using Xam.Plugin.LinkedIn.LiTr.Render;
 using static Android.Provider.CalendarContract;
 using Xam.Plugin.LinkedIn.LiTr.Filter.Video.GL;
 using Xam.Plugin.LinkedIn.LiTr.Exception;
+using static Android.Provider.MediaStore;
 
 
 namespace LiTrExample
@@ -123,7 +124,6 @@ namespace LiTrExample
 
             // picked media
             updateSourceMedia(_sourceMedia, uri);
-
 
             //updateTrimConfig(_trimConfig, _sourceMedia);
             _trimConfig.setTrimEnd(_sourceMedia.duration * 0.5f);
