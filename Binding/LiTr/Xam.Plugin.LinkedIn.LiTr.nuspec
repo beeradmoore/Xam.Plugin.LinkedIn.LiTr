@@ -3,7 +3,7 @@
     <metadata>
         <id>Xam.Plugin.LinkedIn.LiTr</id>
         <title>Xam.Plugin.LinkedIn.LiTr</title>
-        <version>1.5.4</version>
+        <version>1.5.5</version>
         <description>Xamarin.Android bindings for LinkedIn.LiTr.</description>
         <tags>xamarin, xamarin.android, linkedin.litr, litr</tags>
         <authors>beeradmoore</authors>
